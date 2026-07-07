@@ -2,50 +2,88 @@ import { createRequire } from 'module';
 
 createRequire(import.meta.url);
 
-// node_modules/@quartz-community/utils/dist/lang.js
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+// node_modules/@quartz-community/utils/dist/date.js
+function formatDate(d2, locale = "en-US") {
+  return d2.toLocaleDateString(locale, {
+    year: "numeric",
+    month: "short",
+    day: "2-digit"
+  });
 }
 
-// src/components/styles/example.scss
-var example_default = ".example-component {\n  padding: 8px 16px;\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n  color: white;\n  border-radius: 4px;\n  font-weight: 600;\n  display: inline-block;\n}";
-
-// src/components/scripts/example.inline.ts
-var example_inline_default = 'function l(){let e=window.location.pathname;return e.startsWith("/")&&(e=e.slice(1)),e.endsWith("/")&&(e=e.slice(0,-1)),e||"index"}function r(){let e=document.querySelectorAll(".example-component");if(e.length===0)return;let t=[];function o(n){(n.ctrlKey||n.metaKey)&&n.shiftKey&&n.key.toLowerCase()==="e"&&(n.preventDefault(),console.log("[ExampleComponent] Keyboard shortcut triggered!"))}document.addEventListener("keydown",o),t.push(()=>document.removeEventListener("keydown",o));for(let n of e){let i=()=>{console.log("[ExampleComponent] Clicked!")};n.addEventListener("click",i),t.push(()=>n.removeEventListener("click",i))}typeof window<"u"&&window.addCleanup&&window.addCleanup(()=>{t.forEach(n=>n())}),console.log("[ExampleComponent] Initialized with",e.length,"component(s)")}document.addEventListener("nav",e=>{let t=e.detail?.url||l();console.log("[ExampleComponent] Navigation to:",t),r()});document.addEventListener("render",()=>{console.log("[ExampleComponent] Render event - re-initializing"),r()});document.addEventListener("prenav",()=>{let e=document.querySelector(".example-component");e&&sessionStorage.setItem("exampleScrollTop",e.scrollTop?.toString()||"0")});\n';
+// node_modules/preact/dist/preact.mjs
+var n;
 var l;
-l = { __e: function(n2, l2, u3, t2) {
+var u;
+var v = [];
+function _(l2, u2, t2) {
+  var i2, o2, r2, e2 = {};
+  for (r2 in u2) "key" == r2 ? i2 = u2[r2] : "ref" == r2 ? o2 = u2[r2] : e2[r2] = u2[r2];
+  if (arguments.length > 2 && (e2.children = arguments.length > 3 ? n.call(arguments, 2) : t2), "function" == typeof l2 && null != l2.defaultProps) for (r2 in l2.defaultProps) void 0 === e2[r2] && (e2[r2] = l2.defaultProps[r2]);
+  return m(l2, e2, i2, o2, null);
+}
+function m(n2, t2, i2, o2, r2) {
+  var e2 = { type: n2, props: t2, key: i2, ref: o2, __k: null, __: null, __b: 0, __e: null, __c: null, constructor: void 0, __v: null == r2 ? ++u : r2, __i: -1, __u: 0 };
+  return null != l.vnode && l.vnode(e2), e2;
+}
+n = v.slice, l = { __e: function(n2, l2, u2, t2) {
   for (var i2, o2, r2; l2 = l2.__; ) if ((i2 = l2.__c) && !i2.__) try {
     if ((o2 = i2.constructor) && null != o2.getDerivedStateFromError && (i2.setState(o2.getDerivedStateFromError(n2)), r2 = i2.__d), null != i2.componentDidCatch && (i2.componentDidCatch(n2, t2 || {}), r2 = i2.__d), r2) return i2.__E = i2;
   } catch (l3) {
     n2 = l3;
   }
   throw n2;
-} }, "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout;
+} }, u = 0, "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout;
 
-// node_modules/preact/jsx-runtime/dist/jsxRuntime.mjs
-var f2 = 0;
-function u2(e2, t2, n2, o2, i2, u3) {
-  t2 || (t2 = {});
-  var a2, c2, p2 = t2;
-  if ("ref" in p2) for (c2 in p2 = {}, t2) "ref" == c2 ? a2 = t2[c2] : p2[c2] = t2[c2];
-  var l2 = { type: e2, props: p2, key: n2, ref: a2, __k: null, __: null, __b: 0, __e: null, __c: null, constructor: void 0, __v: --f2, __i: -1, __u: 0, __source: i2, __self: u3 };
-  return l.vnode && l.vnode(l2), l2;
+// src/index.ts
+var MetadataRow = (props) => {
+  const { fileData } = props;
+  const frontmatter = fileData.frontmatter || {};
+  const date = fileData.dates?.created || fileData.dates?.modified;
+  const metaItems = [];
+  if (date) {
+    metaItems.push(
+      _("span", { class: "meta-item" }, formatDate(new Date(date), props.cfg?.locale))
+    );
+  }
+  if (fileData.readingTime) {
+    metaItems.push(
+      _("span", { class: "meta-item" }, `${fileData.readingTime} min read`)
+    );
+  }
+  if (frontmatter.description) {
+    metaItems.push(
+      _("span", { class: "meta-item" }, frontmatter.description)
+    );
+  }
+  if (frontmatter.tags) {
+    const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags.join(" \u2022 ") : String(frontmatter.tags);
+    metaItems.push(
+      _("span", { class: "meta-item" }, tags)
+    );
+  }
+  if (metaItems.length === 0) return null;
+  return _("div", { class: "metadata-row" }, ...metaItems);
+};
+var src_default = (() => MetadataRow);
+MetadataRow.css = `
+.metadata-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--darkgray);
+  margin: 0.5rem 0 1.5rem 0;
+  border-bottom: 1px solid var(--lightgray);
+  padding-bottom: 1rem;
 }
 
-// src/components/ExampleComponent.tsx
-var ExampleComponent_default = ((opts) => {
-  const { prefix = "", suffix = "", className = "example-component" } = opts ?? {};
-  const Component = (props) => {
-    const frontmatter = props.fileData?.frontmatter;
-    const title = frontmatter?.title ?? "Untitled";
-    const fullText = `${prefix}${title}${suffix}`;
-    return /* @__PURE__ */ u2("div", { class: classNames(className), children: fullText });
-  };
-  Component.css = example_default;
-  Component.afterDOMLoaded = example_inline_default;
-  return Component;
-});
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+}
+`;
 
-export { ExampleComponent_default as ExampleComponent };
+export { src_default as MetadataRow };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
