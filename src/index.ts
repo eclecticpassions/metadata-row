@@ -1,28 +1,67 @@
-export { ExampleTransformer } from "./transformer";
-export { ExampleFilter } from "./filter";
-export { ExampleEmitter } from "./emitter";
-export { default as ExampleComponent } from "./components/ExampleComponent";
+import { type QuartzComponent, type QuartzComponentConstructor, type QuartzComponentProps } from "@quartz-community/types"
+import { formatDate } from "@quartz-community/utils/date"
+import { h } from "preact"
 
-export type {
-  ExampleTransformerOptions,
-  ExampleFilterOptions,
-  ExampleEmitterOptions,
-} from "./types";
+const MetadataRow: QuartzComponent = (props: QuartzComponentProps) => {
+  const { fileData } = props
+  const frontmatter = fileData.frontmatter as Record<string, any> || {}
 
-export type { ExampleComponentOptions } from "./components/ExampleComponent";
+  const date = fileData.dates?.created || fileData.dates?.modified
 
-// Re-export shared types from @quartz-community/types
-export type {
-  QuartzComponent,
-  QuartzComponentProps,
-  QuartzComponentConstructor,
-  StringResource,
-  QuartzTransformerPlugin,
-  QuartzFilterPlugin,
-  QuartzEmitterPlugin,
-  QuartzPageTypePlugin,
-  QuartzPageTypePluginInstance,
-  PageMatcher,
-  PageGenerator,
-  VirtualPage,
-} from "@quartz-community/types";
+  const metaItems: any[] = []
+
+  // Date
+  if (date) {
+    metaItems.push(
+      h("span", { class: "meta-item" }, formatDate(new Date(date), props.cfg?.locale))
+    )
+  }
+
+  // Read time
+  if (fileData.readingTime) {
+    metaItems.push(
+      h("span", { class: "meta-item" }, `${fileData.readingTime} min read`)
+    )
+  }
+
+  // Description
+  if (frontmatter.description) {
+    metaItems.push(
+      h("span", { class: "meta-item" }, frontmatter.description)
+    )
+  }
+
+  // Tags
+  if (frontmatter.tags) {
+    const tags = Array.isArray(frontmatter.tags) 
+      ? frontmatter.tags.join(" • ") 
+      : String(frontmatter.tags)
+    metaItems.push(
+      h("span", { class: "meta-item" }, tags)
+    )
+  }
+
+  if (metaItems.length === 0) return null
+
+  return h("div", { class: "metadata-row" }, ...metaItems)
+}
+
+export default (() => MetadataRow) satisfies QuartzComponentConstructor
+
+MetadataRow.css = `
+.metadata-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--darkgray);
+  margin: 0.5rem 0 1.5rem 0;
+  border-bottom: 1px solid var(--lightgray);
+  padding-bottom: 1rem;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+}
+`
