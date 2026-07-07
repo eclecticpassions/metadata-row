@@ -46,8 +46,6 @@ const MetadataRow: QuartzComponent = (props: QuartzComponentProps) => {
   return h("div", { class: "metadata-row" }, ...metaItems)
 }
 
-export default (() => MetadataRow) satisfies QuartzComponentConstructor
-
 MetadataRow.css = `
 .metadata-row {
   display: flex;
@@ -65,3 +63,5 @@ MetadataRow.css = `
   align-items: center;
 }
 `
+
+export default (() => MetadataRow) satisfies QuartzComponentConstructor
