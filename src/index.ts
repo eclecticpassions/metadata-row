@@ -1,7 +1,7 @@
 import { type QuartzComponent, type QuartzComponentConstructor, type QuartzComponentProps } from "@quartz-community/types"
 import { formatDate } from "@quartz-community/utils/date"
 import { h } from "preact"
-
+  
 const MetadataRowImpl: QuartzComponent = (props: QuartzComponentProps) => {  
   const { fileData } = props  
   const frontmatter = (fileData.frontmatter as Record<string, any>) || {}  
@@ -40,7 +40,7 @@ MetadataRowImpl.css = `
 }  
 `  
   
-// Explicitly type as constructor  
+// Explicitly type as QuartzComponentConstructor  
 const MetadataRow: QuartzComponentConstructor = (() => MetadataRowImpl)  
   
 export { MetadataRow }  
