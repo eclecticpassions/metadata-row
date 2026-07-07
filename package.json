@@ -25,23 +25,19 @@
     "LICENSE",
     "CHANGELOG.md"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./types": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/types.js"
-    },
-    "./components": {
-      "types": "./dist/components/index.d.ts",
-      "import": "./dist/components/index.js"
+  "exports": {  
+    ".": {  
+      "import": "./dist/index.js",  
+      "types": "./dist/index.d.ts"  
+    },  
+    "./components": {  
+      "import": "./dist/index.js",  
+      "types": "./dist/index.d.ts"  
     },
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",  
+  "types": "dist/index.d.ts",  
   "sideEffects": false,
   "scripts": {
     "build": "tsup",
@@ -94,15 +90,12 @@
     "vfile": "^6.0.3",
     "vitest": "^4.1.10"
   },
-  "quartz": {
-    "name": "metadata-row",
-    "displayName": "Metadata Row",
-    "description": "Displays date, read time, and frontmatter in a minimal row",
-    "category": "component",
-    "version": "1.0.0",
-    "quartzVersion": ">=5.0.0",
-    "defaultOrder": 50,
-    "defaultEnabled": true,
+  "quartz": {  
+    "name": "metadata-row",  
+    "displayName": "Metadata Row",  
+    "description": "Displays date, read time, and frontmatter in a minimal row",  
+    "version": "1.0.0",  
+    "category": ["component"],  
     "components": {  
       "MetadataRow": {  
         "name": "MetadataRow",  
@@ -112,8 +105,8 @@
         "defaultPosition": "beforeBody",  
         "defaultPriority": 15  
       }  
-    }
-  },
+    }  
+  },  
   "engines": {
     "node": ">=22",
     "npm": ">=10.9.2"
