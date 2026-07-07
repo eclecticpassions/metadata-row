@@ -42,45 +42,33 @@ var MetadataRow = (props) => {
   const date = fileData.dates?.created || fileData.dates?.modified;
   const metaItems = [];
   if (date) {
-    metaItems.push(
-      _("span", { class: "meta-item" }, formatDate(new Date(date), props.cfg?.locale))
-    );
+    metaItems.push(_("span", { class: "meta-item" }, formatDate(new Date(date), props.cfg?.locale)));
   }
   if (fileData.readingTime) {
-    metaItems.push(
-      _("span", { class: "meta-item" }, `${fileData.readingTime} min read`)
-    );
+    metaItems.push(_("span", { class: "meta-item" }, `${fileData.readingTime} min read`));
   }
   if (frontmatter.description) {
-    metaItems.push(
-      _("span", { class: "meta-item" }, frontmatter.description)
-    );
+    metaItems.push(_("span", { class: "meta-item" }, frontmatter.description));
   }
   if (frontmatter.tags) {
     const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags.join(" \u2022 ") : String(frontmatter.tags);
-    metaItems.push(
-      _("span", { class: "meta-item" }, tags)
-    );
+    metaItems.push(_("span", { class: "meta-item" }, tags));
   }
-  if (metaItems.length === 0) return null;
   return _("div", { class: "metadata-row" }, ...metaItems);
 };
-MetadataRow.css = `
-.metadata-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  font-size: 0.875rem;
-  color: var(--darkgray);
-  margin: 0.5rem 0 1.5rem 0;
-  border-bottom: 1px solid var(--lightgray);
-  padding-bottom: 1rem;
-}
-
-.meta-item {
-  display: inline-flex;
-  align-items: center;
-}
+MetadataRow.css = `  
+.metadata-row {  
+  display: flex;  
+  gap: 1rem;  
+  font-size: 0.875rem;  
+  color: var(--darkgray);  
+  margin: 0.5rem 0;  
+}  
+  
+.meta-item {  
+  display: inline-flex;  
+  align-items: center;  
+}  
 `;
 var src_default = (() => MetadataRow);
 

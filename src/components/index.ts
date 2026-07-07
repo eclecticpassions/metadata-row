@@ -1,1 +1,0 @@
-export { default as MetadataRow } from "../index.ts"

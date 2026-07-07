@@ -1,7 +1,7 @@
 {
-  "name": "@quartz-community/plugin-template",
+  "name": "metadata-row",
   "version": "0.1.0",
-  "description": "Template repository for Quartz community plugins.",
+  "description": "Displays date, read time, and frontmatter in a minimal row",
   "type": "module",
   "license": "MIT",
   "author": "Quartz Community",
@@ -64,9 +64,10 @@
       "optional": true
     }
   },
-  "dependencies": {
-    "@quartz-community/types": "github:quartz-community/types",
-    "@quartz-community/utils": "github:quartz-community/utils"
+  "dependencies": {  
+    "@quartz-community/types": "^5.0.0",  
+    "@quartz-community/utils": "^5.0.0",  
+    "preact": "^10.0.0"  
   },
   "devDependencies": {
     "@types/hast": "^3.0.4",
@@ -94,31 +95,23 @@
     "vitest": "^4.1.10"
   },
   "quartz": {
-    "name": "plugin-template",
-    "displayName": "Plugin Template",
-    "category": "transformer",
+    "name": "metadata-row",
+    "displayName": "Metadata Row",
+    "description": "Displays date, read time, and frontmatter in a minimal row",
+    "category": "component",
     "version": "1.0.0",
     "quartzVersion": ">=5.0.0",
-    "dependencies": [],
     "defaultOrder": 50,
     "defaultEnabled": true,
-    "defaultOptions": {},
-    "optionSchema": {
-      "highlightToken": {
-        "type": "enum",
-        "values": [
-          "==",
-          "**",
-          "~~"
-        ]
-      }
-    },
-    "components": {
-      "ExampleComponent": {
-        "displayName": "Example Component",
-        "defaultPosition": "right",
-        "defaultPriority": 50
-      }
+    "components": {  
+      "default": {  
+        "name": "MetadataRow",  
+        "displayName": "Metadata Row",  
+        "description": "Minimal metadata row component",  
+        "version": "1.0.0",  
+        "defaultPosition": "beforeBody",  
+        "defaultPriority": 15  
+      }  
     }
   },
   "engines": {
