@@ -70,8 +70,9 @@ MetadataRow.css = `
   align-items: center;  
 }  
 `;
-var src_default = (() => MetadataRow);
+var MetadataRowComponent = (() => MetadataRow);
+var src_default = MetadataRowComponent;
 
-export { src_default as default };
+export { MetadataRowComponent, src_default as default };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

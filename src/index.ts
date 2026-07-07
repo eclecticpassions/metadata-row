@@ -40,5 +40,6 @@ MetadataRow.css = `
 }  
 `  
   
-// Export as constructor  
-export default (() => MetadataRow) satisfies QuartzComponentConstructor
+// Export as named export "MetadataRow" to match manifest  
+export const MetadataRowComponent = (() => MetadataRow) satisfies QuartzComponentConstructor  
+export default MetadataRowComponent

@@ -104,7 +104,7 @@
     "defaultOrder": 50,
     "defaultEnabled": true,
     "components": {  
-      "default": {  
+      "MetadataRow": {  
         "name": "MetadataRow",  
         "displayName": "Metadata Row",  
         "description": "Minimal metadata row component",  
