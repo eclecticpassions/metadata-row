@@ -1,5 +1,5 @@
-import { QuartzComponent } from '@quartz-community/types';
+import { QuartzComponentConstructor } from '@quartz-community/types';
 
-declare const MetadataRowComponent: () => QuartzComponent;
+declare const MetadataRow: QuartzComponentConstructor;
 
-export { MetadataRowComponent, MetadataRowComponent as default };
+export { MetadataRow, MetadataRow as default };

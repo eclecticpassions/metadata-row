@@ -2,7 +2,7 @@ import { type QuartzComponent, type QuartzComponentConstructor, type QuartzCompo
 import { formatDate } from "@quartz-community/utils/date"
 import { h } from "preact"
 
-const MetadataRow: QuartzComponent = (props: QuartzComponentProps) => {  
+const MetadataRowImpl: QuartzComponent = (props: QuartzComponentProps) => {  
   const { fileData } = props  
   const frontmatter = (fileData.frontmatter as Record<string, any>) || {}  
   const date = fileData.dates?.created || fileData.dates?.modified  
@@ -25,7 +25,7 @@ const MetadataRow: QuartzComponent = (props: QuartzComponentProps) => {
   return h("div", { class: "metadata-row" }, ...metaItems)  
 }  
   
-MetadataRow.css = `  
+MetadataRowImpl.css = `  
 .metadata-row {  
   display: flex;  
   gap: 1rem;  
@@ -40,6 +40,8 @@ MetadataRow.css = `
 }  
 `  
   
-// Export as named export "MetadataRow" to match manifest  
-export const MetadataRowComponent = (() => MetadataRow) satisfies QuartzComponentConstructor  
-export default MetadataRowComponent
+// Explicitly type as constructor  
+const MetadataRow: QuartzComponentConstructor = (() => MetadataRowImpl)  
+  
+export { MetadataRow }  
+export default MetadataRow

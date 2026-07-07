@@ -36,7 +36,7 @@ n = v.slice, l = { __e: function(n2, l2, u2, t2) {
 } }, u = 0, "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout;
 
 // src/index.ts
-var MetadataRow = (props) => {
+var MetadataRowImpl = (props) => {
   const { fileData } = props;
   const frontmatter = fileData.frontmatter || {};
   const date = fileData.dates?.created || fileData.dates?.modified;
@@ -56,7 +56,7 @@ var MetadataRow = (props) => {
   }
   return _("div", { class: "metadata-row" }, ...metaItems);
 };
-MetadataRow.css = `  
+MetadataRowImpl.css = `  
 .metadata-row {  
   display: flex;  
   gap: 1rem;  
@@ -70,9 +70,9 @@ MetadataRow.css = `
   align-items: center;  
 }  
 `;
-var MetadataRowComponent = (() => MetadataRow);
-var src_default = MetadataRowComponent;
+var MetadataRow = (() => MetadataRowImpl);
+var src_default = MetadataRow;
 
-export { MetadataRowComponent, src_default as default };
+export { MetadataRow, src_default as default };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
