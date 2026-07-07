@@ -1,1 +1,1 @@
-export { default as MetadataRow } from "../index.js"
+export { default as MetadataRow } from "../index.ts"

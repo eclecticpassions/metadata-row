@@ -65,7 +65,6 @@ var MetadataRow = (props) => {
   if (metaItems.length === 0) return null;
   return _("div", { class: "metadata-row" }, ...metaItems);
 };
-var src_default = (() => MetadataRow);
 MetadataRow.css = `
 .metadata-row {
   display: flex;
@@ -83,6 +82,7 @@ MetadataRow.css = `
   align-items: center;
 }
 `;
+var src_default = (() => MetadataRow);
 
 export { src_default as default };
 //# sourceMappingURL=index.js.map
