@@ -1,4 +1,65 @@
-# Quartz Community Plugin Template
+# Minimal Properties and Metadata Layout for Quartz
+
+I created this Quartz plugin as I wanted a minimal, one-liner below the page heading showing a note's metadata. By default, Quartz 5 shows a table for properties (from parameters in the front matter) and date + read time is managed by `github:quartz-community/content-meta` separately. Personally I thought this looked clunky and took up a lot of space.
+
+## Function
+
+This plugin `metadata-row` displays the following information:
+
+1. Creation date
+2. Modified date (if present)
+3. Word count
+4. Estimated read time (min)
+5. Tags (from front matter, if used)
+6. Status (custom front matter parameter, if used)
+
+Extra features:
+
+- Status has a tooltip on hover with CSS
+- Tags are clickable
+- If viewport width is narrow, the metadata will wrap
+
+## Install
+
+1. To install this plugin to your Quartz site, run:
+
+    `npx quartz plugin install github:eclecticpassions/metadata-row`
+
+2. To update the plugin, run it with the `--latest` flag like:
+
+    `npx quartz plugin install --latest github:eclecticpassions/metadata-row`
+
+3. Change the `quartz.config.yaml` file to the following:
+
+    ```yaml
+    - source: github:eclecticpassions/metadata-row
+      enabled: true
+      layout:
+        position: beforeBody 
+        priority: 20 # Change the priority (or position) to adjust where the metadata-row is rendered in your Quartz layout
+    ```
+
+## Disclaimer
+
+> [!WARNING]
+> I used a few LLMs to help troubleshoot to get the `index.ts` file working. I am not a professional coder. Please review the code and packages before use. Check node package status by running `npm audit` regularly to check for vulnerabilities.
+
+- This plugin uses the official Quartz-community [plugin template](https://github.com/quartz-community/plugin-template)
+- Only Quartz v5.0.0 has been tested to work (if you run an older version of Quartz and want to test it, please open an issue, thanks!)
+
+## Dependencies
+
+- @quartz-community/types
+- @quartz-community/utils
+- preact
+- reading-time
+
+
+*Below is the README included in the Quartz plugin template.*
+
+---
+
+## Quartz Community Plugin Template
 
 Production-ready template for building, testing, and publishing Quartz community plugins. It mirrors
 Quartz's native plugin patterns and uses a factory-function API similar to Astro integrations:
