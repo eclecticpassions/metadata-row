@@ -1,23 +1,21 @@
 {
   "name": "metadata-row",
   "version": "0.1.0",
-  "description": "Displays date, read time, and frontmatter in a minimal row",
+  "description": "Displays date, last mod, word count, read time, and custom frontmatter in a minimal row",
   "type": "module",
   "license": "MIT",
-  "author": "Quartz Community",
-  "homepage": "https://quartz.jzhao.xyz",
+  "author": "Naty S",
+  "homepage": "https://burgeonlab.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/quartz-community/plugin-template"
+    "url": "https://github.com/eclecticpassions/metadata-row"
   },
   "keywords": [
     "quartz",
     "quartz-plugin",
-    "plugin-template",
-    "remark",
-    "rehype",
-    "mdast",
-    "hast"
+    "frontmatter",
+    "metadata",
+    "properties"
   ],
   "files": [
     "dist",
@@ -50,7 +48,8 @@
   },
   "peerDependencies": {
     "preact": "^10.0.0",
-    "vfile": "^6.0.3"
+    "vfile": "^6.0.3",
+    "@quartz-community/utils": "github:quartz-community/utils"  
   },
   "peerDependenciesMeta": {
     "preact": {
@@ -61,9 +60,9 @@
     }
   },
   "dependencies": {  
-    "@quartz-community/types": "^5.0.0",  
-    "@quartz-community/utils": "^5.0.0",  
-    "preact": "^10.0.0"  
+    "@quartz-community/types": "github:quartz-community/types", 
+    "preact": "^10.0.0",
+    "reading-time": "^1.5.0"
   },
   "devDependencies": {
     "@types/hast": "^3.0.4",
@@ -93,8 +92,9 @@
   "quartz": {  
     "name": "metadata-row",  
     "displayName": "Metadata Row",  
-    "description": "Displays date, read time, and frontmatter in a minimal row",  
+     "description": "Displays date, last mod, word count, read time, and custom frontmatter in a minimal row",
     "version": "1.0.0",  
+    "quartzVersion": ">=5.0.0",
     "category": ["component"],  
     "components": {  
       "MetadataRow": {  
