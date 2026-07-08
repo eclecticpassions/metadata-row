@@ -49,8 +49,8 @@ const MetadataRowImpl: QuartzComponent = (props: QuartzComponentProps) => {
     const statusValue = Array.isArray(frontmatter.status) ? frontmatter.status : String(frontmatter.status)  
     
   metaItems.push(
-    h("span", { class: "meta-item" }, [
-      h("span", { class: "meta-item status" }, statusValue),
+    h("span", { class: "meta-item status" }, [
+      h("span", { class: "meta-item" }, statusValue),
       h("span", { class: "status-tooltip" }, [
         "This is the ",
         h("a", { href: "/about/#note-status" }, "status label")
@@ -86,9 +86,8 @@ gap: 0.3rem;
   text-decoration: underline;  
 }  
 
-.meta-status {
+.meta-item.status {
   position: relative;
-  display: inline-block;
   cursor: help;
 }
 
@@ -114,15 +113,15 @@ gap: 0.3rem;
   }
 }
 
-.meta-status:hover .status-tooltip,
-.meta-status:focus-within .status-tooltip {
+.meta-item.status:hover .status-tooltip,
+.meta-item.status:focus-within .status-tooltip {
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
   transition: opacity 160ms ease, transform 160ms ease, visibility 0s;
 }
 
-.meta-status::after {
+.meta-item.status::after {
   content: "";
   width: 120%;
   height: 50%;
