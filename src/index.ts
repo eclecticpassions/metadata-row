@@ -49,7 +49,7 @@ const MetadataRowImpl: QuartzComponent = (props: QuartzComponentProps) => {
     const statusValue = Array.isArray(frontmatter.status) ? frontmatter.status : String(frontmatter.status)  
     
   metaItems.push(
-    h("span", { class: "meta-status" }, [
+    h("span", { class: "meta-item" }, [
       h("span", { class: "meta-item status" }, statusValue),
       h("span", { class: "status-tooltip" }, [
         "This is the ",

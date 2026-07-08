@@ -278,7 +278,7 @@ var MetadataRowImpl = (props) => {
   if (frontmatter.status) {
     const statusValue = Array.isArray(frontmatter.status) ? frontmatter.status : String(frontmatter.status);
     metaItems.push(
-      _("span", { class: "meta-status" }, [
+      _("span", { class: "meta-item" }, [
         _("span", { class: "meta-item status" }, statusValue),
         _("span", { class: "status-tooltip" }, [
           "This is the ",
